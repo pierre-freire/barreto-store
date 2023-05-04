@@ -12,7 +12,6 @@ import { useEffect, useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import cn from "classnames";
-import { icon } from "@fortawesome/fontawesome-svg-core";
 import styles from "./navbar.module.css";
 
 function Navbar() {

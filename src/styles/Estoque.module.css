@@ -1,0 +1,28 @@
+.title {
+  display: flex;
+  gap: 8px;
+}
+
+.sub-title {
+  margin: 8px 0 16px;
+}
+
+.table {
+  border-collapse: collapse;
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+  background-color: white;
+  text-align: left;
+  border: 1px solid #1c1c1c;
+}
+
+.table-row {
+  display: grid;
+  padding: 8px;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.table-row:nth-child(even) {
+  background-color: var(--background-color);
+}

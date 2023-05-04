@@ -1,6 +1,16 @@
 import Head from "next/head";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBoxesStacked } from "@fortawesome/free-solid-svg-icons";
+import styles from "@/styles/Estoque.module.css";
 
 export default function Estoque() {
+  const itens = [
+    { name: "resina", max: 2, min: 1, stock: 1, unit: "ml" },
+    { name: "luvas", max: 50, min: 10, stock: 8, unit: "unidade" },
+    { name: "alcool", max: 2, min: 1, stock: 1, unit: "litro" },
+    { name: "caixas", max: 2, min: 1, stock: 1, unit: "unidade" },
+    { name: "material para absorção", max: 2, min: 1, stock: 1, unit: "m^3" },
+  ];
   return (
     <>
       <Head>
@@ -9,7 +19,48 @@ export default function Estoque() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>Estoque</main>
+      <main className={styles.container}>
+        <h1 className={styles.title}>
+          <span>
+            <FontAwesomeIcon icon={faBoxesStacked} />
+          </span>
+          Estoque
+        </h1>
+        <h2 className={styles["sub-title"]}>
+          Visão geral sobre o controle do estoque
+        </h2>
+        <section>
+          <h3>itens necessario para impressão</h3>
+          <table className={styles.table}>
+            <thead>
+              <tr className={styles["table-row"]}>
+                <th>Nome</th>
+                <th>Maximo</th>
+                <th>Em estoque</th>
+                <th>minimo</th>
+                <th>unidade</th>
+                <th>quanto comprar</th>
+                <th>Precisa comprar?</th>
+              </tr>
+            </thead>
+            <tbody>
+              {itens.map((elm, index) => {
+                return (
+                  <tr key={index} className={styles["table-row"]}>
+                    <td>{elm.name}</td>
+                    <td>{elm.max}</td>
+                    <td>{elm.stock}</td>
+                    <td>{elm.min}</td>
+                    <td>{elm.unit}</td>
+                    <td>{elm.stock > elm.min ? "0" : elm.min - elm.stock}</td>
+                    <td>{elm.stock < elm.min ? "Sim" : "Não"}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </section>
+      </main>
     </>
   );
 }
