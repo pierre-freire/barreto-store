@@ -53,7 +53,10 @@ export default function Estoque() {
                     <td>{elm.min}</td>
                     <td>{elm.unit}</td>
                     <td>{elm.stock < elm.min ? "Sim" : "Não"}</td>
-                    <td>{elm.stock > elm.min ? "0" : elm.max - elm.stock}</td>
+                    <td>
+                      {elm.stock > elm.min ? "0" : elm.max - elm.stock}{" "}
+                      {elm.unit}
+                    </td>
                   </tr>
                 );
               })}
