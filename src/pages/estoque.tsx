@@ -39,8 +39,8 @@ export default function Estoque() {
                 <th>Em estoque</th>
                 <th>minimo</th>
                 <th>unidade</th>
-                <th>quanto comprar</th>
                 <th>Precisa comprar?</th>
+                <th>quanto comprar</th>
               </tr>
             </thead>
             <tbody>
@@ -52,8 +52,8 @@ export default function Estoque() {
                     <td>{elm.stock}</td>
                     <td>{elm.min}</td>
                     <td>{elm.unit}</td>
-                    <td>{elm.stock > elm.min ? "0" : elm.min - elm.stock}</td>
                     <td>{elm.stock < elm.min ? "Sim" : "Não"}</td>
+                    <td>{elm.stock > elm.min ? "0" : elm.max - elm.stock}</td>
                   </tr>
                 );
               })}

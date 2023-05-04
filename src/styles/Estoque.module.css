@@ -15,12 +15,14 @@
   background-color: white;
   text-align: left;
   border: 1px solid #1c1c1c;
+  border-radius: 8px;
 }
 
 .table-row {
   display: grid;
   padding: 8px;
   grid-template-columns: repeat(7, 1fr);
+  align-items: center;
 }
 
 .table-row:nth-child(even) {
