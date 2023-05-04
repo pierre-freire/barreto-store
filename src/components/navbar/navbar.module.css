@@ -1,0 +1,38 @@
+.logo {
+  padding: 16px 8px;
+  text-align: center;
+  margin-bottom: 12px;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+}
+
+.list {
+  padding: 0 16px;
+  list-style-type: none;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--light-text);
+  padding: 8px 8px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon {
+  font-size: 20px;
+}
+
+.logo-icon {
+  font-size: 40px;
+  color: var(--primary-color);
+  transform: rotate(-45deg);
+}
+
+.selected {
+  background-color: var(--background-color);
+  color: var(--dark-text);
+}
