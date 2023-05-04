@@ -3,6 +3,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import {
   faBoxesStacked,
   faChartLine,
+  faCompass,
   faFileInvoice,
   faMotorcycle,
   faUser,
@@ -11,10 +12,19 @@ import { useEffect, useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import cn from "classnames";
+import { icon } from "@fortawesome/fontawesome-svg-core";
 import styles from "./navbar.module.css";
 
 function Navbar() {
   const [path, setPath] = useState("/");
+
+  const menu = [
+    { href: "/", label: "Home", icon: faChartLine },
+    { href: "/pedidos", label: "Pedidos", icon: faFileInvoice },
+    { href: "/catalogo", label: "Catálogo", icon: faCompass },
+    { href: "/estoque", label: "Estoque", icon: faBoxesStacked },
+    { href: "/clientes", label: "Clientes", icon: faUser },
+  ];
 
   useEffect(() => {
     setPath(window.location.pathname);
@@ -34,56 +44,46 @@ function Navbar() {
         </p>
       </div>
       <ul className={styles.list}>
-        <li>
-          <a
-            className={cn(
-              `${styles.link} ${path === "/" ? styles.selected : ""}`
-            )}
-            href="/">
-            <div className={styles.icon}>
-              <FontAwesomeIcon icon={faChartLine} />
-            </div>
-            Dashboards
-          </a>
-        </li>
-        <li>
-          <a
-            className={cn(
-              `${styles.link} ${path === "/pedidos" ? styles.selected : ""}`
-            )}
-            href="/pedidos">
-            <div className={styles.icon}>
-              <FontAwesomeIcon icon={faFileInvoice} />
-            </div>
-            Pedidos
-          </a>
-        </li>
-        <li>
-          <a
-            className={cn(
-              `${styles.link} ${path === "/estoque" ? styles.selected : ""}`
-            )}
-            href="/estoque">
-            <div className={styles.icon}>
-              <FontAwesomeIcon icon={faBoxesStacked} />
-            </div>
-            Estoque
-          </a>
-        </li>
-        <li>
-          <a
-            className={cn(
-              `${styles.link} ${path === "/clientes" ? styles.selected : ""}`
-            )}
-            href="/clientes">
-            <div className={styles.icon}>
-              <FontAwesomeIcon icon={faUser} />
-            </div>
-            Clientes
-          </a>
-        </li>
+        {menu.map((elm, index) => {
+          return (
+            <ListItem
+              key={index}
+              path={path}
+              href={elm.href}
+              label={elm.label}
+              icon={elm.icon}
+            />
+          );
+        })}
       </ul>
     </nav>
+  );
+}
+
+interface ListItemProps {
+  path: string;
+  href: string;
+  label: string;
+  icon: any;
+}
+
+function ListItem({
+  path = "",
+  href = "",
+  label = "",
+  icon = null,
+}: ListItemProps) {
+  return (
+    <li>
+      <a
+        className={cn(`${styles.link} ${path === href ? styles.selected : ""}`)}
+        href={href}>
+        <div className={styles.icon}>
+          <FontAwesomeIcon icon={icon} />
+        </div>
+        {label}
+      </a>
+    </li>
   );
 }
 
