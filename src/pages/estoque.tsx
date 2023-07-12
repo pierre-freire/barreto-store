@@ -11,6 +11,7 @@ export default function Estoque() {
     { name: "caixas", max: 2, min: 1, stock: 1, unit: "unidade" },
     { name: "material para absorção", max: 2, min: 1, stock: 1, unit: "m^3" },
   ];
+
   return (
     <>
       <Head>
@@ -19,7 +20,7 @@ export default function Estoque() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.container}>
+      <main>
         <h1 className={styles.title}>
           <span>
             <FontAwesomeIcon icon={faBoxesStacked} />
@@ -33,27 +34,29 @@ export default function Estoque() {
           <h3>itens necessario para impressão</h3>
           <table className={styles.table}>
             <thead>
-              <tr className={styles["table-row"]}>
-                <th>Nome</th>
-                <th>Maximo</th>
-                <th>Em estoque</th>
-                <th>minimo</th>
-                <th>unidade</th>
-                <th>Precisa comprar?</th>
-                <th>quanto comprar</th>
+              <tr className={styles["table-header"]}>
+                <th className={styles["table-cell"]}>Nome</th>
+                <th className={styles["table-cell"]}>Maximo</th>
+                <th className={styles["table-cell"]}>Em estoque</th>
+                <th className={styles["table-cell"]}>minimo</th>
+                <th className={styles["table-cell"]}>unidade</th>
+                <th className={styles["table-cell"]}>Precisa comprar?</th>
+                <th className={styles["table-cell"]}>quanto comprar</th>
               </tr>
             </thead>
             <tbody>
               {itens.map((elm, index) => {
                 return (
                   <tr key={index} className={styles["table-row"]}>
-                    <td>{elm.name}</td>
-                    <td>{elm.max}</td>
-                    <td>{elm.stock}</td>
-                    <td>{elm.min}</td>
-                    <td>{elm.unit}</td>
-                    <td>{elm.stock < elm.min ? "Sim" : "Não"}</td>
-                    <td>
+                    <td className={styles["table-cell"]}>{elm.name}</td>
+                    <td className={styles["table-cell"]}>{elm.max}</td>
+                    <td className={styles["table-cell"]}>{elm.stock}</td>
+                    <td className={styles["table-cell"]}>{elm.min}</td>
+                    <td className={styles["table-cell"]}>{elm.unit}</td>
+                    <td className={styles["table-cell"]}>
+                      {elm.stock < elm.min ? "Sim" : "Não"}
+                    </td>
+                    <td className={styles["table-cell"]}>
                       {elm.stock > elm.min ? "0" : elm.max - elm.stock}{" "}
                       {elm.unit}
                     </td>

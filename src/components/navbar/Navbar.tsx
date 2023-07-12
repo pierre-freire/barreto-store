@@ -27,7 +27,6 @@ function Navbar() {
 
   useEffect(() => {
     setPath(window.location.pathname);
-    console.log(window.location.pathname);
   }, []);
 
   return (

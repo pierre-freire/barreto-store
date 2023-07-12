@@ -1,0 +1,9 @@
+.title {
+  display: flex;
+  margin-bottom: 8px;
+  gap: 8px;
+}
+
+.sub-title {
+  margin: 8px 0 16px;
+}

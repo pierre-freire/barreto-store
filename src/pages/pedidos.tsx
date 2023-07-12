@@ -1,6 +1,18 @@
 import Head from "next/head";
+import { faFileInvoice } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import styles from "@/styles/Pedidos.module.css";
 
 export default function Pedidos() {
+  const itens = [
+    { name: "resina", max: 2, min: 1, stock: 1, unit: "ml" },
+    { name: "luvas", max: 50, min: 10, stock: 8, unit: "unidade" },
+    { name: "alcool", max: 2, min: 1, stock: 1, unit: "litro" },
+    { name: "caixas", max: 2, min: 1, stock: 1, unit: "unidade" },
+    { name: "material para absorção", max: 2, min: 1, stock: 1, unit: "m^3" },
+  ];
+
   return (
     <>
       <Head>
@@ -9,7 +21,50 @@ export default function Pedidos() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>Pedidos</main>
+      <main>
+        <h1 className={styles.title}>
+          <span>
+            <FontAwesomeIcon icon={faFileInvoice} />
+          </span>
+          Pedidos
+        </h1>
+        <h2 className={styles["sub-title"]}>Visão geral sobre os pedidos</h2>
+        <section>
+          <table className={styles.table}>
+            <thead>
+              <tr className={styles["table-header"]}>
+                <th className={styles["table-cell"]}>Nome</th>
+                <th className={styles["table-cell"]}>Maximo</th>
+                <th className={styles["table-cell"]}>Em estoque</th>
+                <th className={styles["table-cell"]}>minimo</th>
+                <th className={styles["table-cell"]}>unidade</th>
+                <th className={styles["table-cell"]}>Precisa comprar?</th>
+                <th className={styles["table-cell"]}>quanto comprar</th>
+              </tr>
+            </thead>
+            <tbody>
+              {itens.map((elm, index) => {
+                return (
+                  <tr key={index} className={styles["table-row"]}>
+                    <td className={styles["table-cell"]}>{elm.name}</td>
+                    <td className={styles["table-cell"]}>{elm.max}</td>
+                    <td className={styles["table-cell"]}>{elm.stock}</td>
+                    <td className={styles["table-cell"]}>{elm.min}</td>
+                    <td className={styles["table-cell"]}>{elm.unit}</td>
+                    <td className={styles["table-cell"]}>
+                      {elm.stock < elm.min ? "Sim" : "Não"}
+                    </td>
+                    <td className={styles["table-cell"]}>
+                      {elm.stock > elm.min ? "0" : elm.max - elm.stock}{" "}
+                      {elm.unit}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </section>
+      </main>
     </>
   );
 }
