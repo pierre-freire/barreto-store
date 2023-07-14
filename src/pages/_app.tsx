@@ -13,12 +13,18 @@ const roboto = Roboto({
   subsets: ["latin"],
 });
 
-export default function App({ Component, pageProps }: AppProps) {
-  return (
-    <div className={roboto.className}>
+export default function App({ Component, pageProps, ...appProps }: AppProps) {
+  const getContent = () => {
+    // array of all the paths that doesn't need layout
+    if ([`/login`].includes(appProps.router.pathname))
+      return <Component {...pageProps} />;
+
+    return (
       <Layout>
         <Component {...pageProps} />
       </Layout>
-    </div>
-  );
+    );
+  };
+
+  return <div className={roboto.className}>{getContent()}</div>;
 }
